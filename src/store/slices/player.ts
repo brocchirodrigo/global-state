@@ -10,14 +10,14 @@ const playerSlice = createSlice({
           title: "Iniciando com Redux",
           videos: [
             {
-              id: "caminhada.mp4",
+              id: "1",
               title: "Caminhada",
               url: "https://public.imaginer.com.br/tests/caminhada.mp4",
               remote: false,
               duration: "00:37",
             },
             {
-              id: "CPRx_WVkJ8g",
+              id: "2",
               title: "Chatbot do ZERO com Next, AI SDK, OpenAI e Shadcn/UI",
               url: "https://www.youtube.com/watch?v=CPRx_WVkJ8g",
               remote: true,
@@ -30,32 +30,53 @@ const playerSlice = createSlice({
           title: "Iniciando com Redux part II",
           videos: [
             {
-              id: "caminhada.mp4",
+              id: "1",
               title: "Caminhada",
               url: "https://public.imaginer.com.br/tests/caminhada.mp4",
               remote: false,
               duration: "00:37",
             },
             {
-              id: "CPRx_WVkJ8g",
+              id: "2",
               title: "Chatbot do ZERO com Next, AI SDK, OpenAI e Shadcn/UI",
               url: "https://www.youtube.com/watch?v=CPRx_WVkJ8g",
               remote: true,
               duration: "36:07",
             },
             {
-              id: "CPRx_WVkJ8g",
-              title: "Chatbot do ZERO com Next, AI SDK, OpenAI e Shadcn/UI",
-              url: "https://www.youtube.com/watch?v=CPRx_WVkJ8g",
+              id: "3",
+              title: "3 dicas para escalar apps React com TailwindCSS",
+              url: "https://www.youtube.com/watch?v=BhPyF0BQpF0",
               remote: true,
-              duration: "36:07",
+              duration: "15:20",
+            },
+          ],
+        },
+        {
+          id: "3",
+          title: "Iniciando com Redux part III",
+          videos: [
+            {
+              id: "1",
+              title: "Caminhada",
+              url: "https://public.imaginer.com.br/tests/caminhada.mp4",
+              remote: false,
+              duration: "00:37",
             },
           ],
         },
       ],
     },
+    currentModuleIndex: 0,
+    currentVideoIndex: 0,
   },
-  reducers: {},
+  reducers: {
+    play: (state, action) => {
+      state.currentModuleIndex = action.payload[0];
+      state.currentVideoIndex = action.payload[1];
+    },
+  },
 });
 
 export const player = playerSlice.reducer;
+export const { play } = playerSlice.actions;

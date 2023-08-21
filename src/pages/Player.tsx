@@ -6,6 +6,17 @@ import { useAppSelector } from "../store";
 export function Player() {
   const modules = useAppSelector((state) => state.player.playlist.modules);
 
+  const video = useAppSelector((state) => {
+    const { currentModuleIndex, currentVideoIndex } = state.player;
+
+    const currentVideo =
+      state.player.playlist.modules[currentModuleIndex].videos[
+        currentVideoIndex
+      ];
+
+    return currentVideo;
+  });
+
   return (
     <div className="flex items-center justify-center h-screen antialiased bg-zinc-950 text-zinc-50">
       <div className="flex lg:w-[1100px] w-[950px] flex-col gap-6">
@@ -14,9 +25,9 @@ export function Player() {
         <main className="relative flex overflow-hidden border rounded-lg shadow border-zinc-800 bg-zinc-900 pr-80">
           <div className="flex-1">
             <VideoPlayer
-              url="https://public.imaginer.com.br/tests/caminhada.mp4"
-              title="Caminhada Teste"
-              remote={false}
+              url={video.url}
+              title={video.title}
+              remote={video.remote}
             />
           </div>
 
