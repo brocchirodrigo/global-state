@@ -1,26 +1,34 @@
 import { Header } from "../components/Player/Header";
 import { Module } from "../components/Player/Module";
 import { VideoPlayer } from "../components/Player/VideoPlayer";
-
-//  https://www.youtube.com/watch?v=25Mrhg6dg1M videos/video.MP4
+import { useAppSelector } from "../store";
 
 export function Player() {
+  const modules = useAppSelector((state) => state.player.playlist.modules);
+
   return (
-    <div className="antialiased h-screen bg-zinc-950 text-zinc-50 flex justify-center items-center">
+    <div className="flex items-center justify-center h-screen antialiased bg-zinc-950 text-zinc-50">
       <div className="flex lg:w-[1100px] w-[950px] flex-col gap-6">
         <Header />
 
-        <main className="relative flex overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 shadow pr-80">
+        <main className="relative flex overflow-hidden border rounded-lg shadow border-zinc-800 bg-zinc-900 pr-80">
           <div className="flex-1">
             <VideoPlayer
-              url="https://pub-49734f77d2b14426a098fefff489de15.r2.dev/video.mp4"
+              url="https://public.imaginer.com.br/tests/caminhada.mp4"
               title="Caminhada Teste"
               remote={false}
             />
           </div>
 
-          <aside className="w-80 absolute top-0 bottom-0 right-0 border-l border-zinc-800 bg-zinc-900  overflow-y-auto divide-y-2 divide-zinc-600 scrollbar-thin scrollbar-thumb-zinc-400 scrollbar-track-zinc-700">
-            <Module />
+          <aside className="absolute top-0 bottom-0 right-0 overflow-y-auto border-l divide-y-2 w-80 border-zinc-800 bg-zinc-900 divide-zinc-600 scrollbar-thin scrollbar-thumb-zinc-400 scrollbar-track-zinc-700">
+            {modules.map((module, index) => (
+              <Module
+                key={module.id}
+                moduleIndex={index}
+                title={module.title}
+                amount={module.videos.length}
+              />
+            ))}
           </aside>
         </main>
       </div>
