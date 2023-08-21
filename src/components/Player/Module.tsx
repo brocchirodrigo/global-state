@@ -14,9 +14,17 @@ interface ModuleProps {
 export function Module({ amount, moduleIndex, title }: ModuleProps) {
   const dispatch = useDispatch();
 
-  const videos = useAppSelector((state) => {
-    return state.player.playlist.modules[moduleIndex].videos;
-  });
+  const { videos, currentModuleIndex, currentVideoIndex } = useAppSelector(
+    (state) => {
+      const { currentModuleIndex, currentVideoIndex } = state.player;
+
+      return {
+        videos: state.player.playlist.modules[moduleIndex].videos,
+        currentModuleIndex,
+        currentVideoIndex,
+      };
+    }
+  );
 
   return (
     <Collapsible.Root className="group">
@@ -38,12 +46,17 @@ export function Module({ amount, moduleIndex, title }: ModuleProps) {
       <Collapsible.Content>
         <nav className="relative flex flex-col gap-4 p-6">
           {videos.map((video, videoIndex) => {
+            const isCurrent =
+              currentModuleIndex === moduleIndex &&
+              currentVideoIndex === videoIndex;
+
             return (
               <Video
                 key={video.id}
                 title={video.title}
                 duration={video.duration}
                 onPlay={() => dispatch(play([moduleIndex, videoIndex]))}
+                isCurrent={isCurrent}
               />
             );
           })}
