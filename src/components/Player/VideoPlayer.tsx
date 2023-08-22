@@ -1,5 +1,5 @@
 import Player from "react-player";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../store";
 import { next } from "../../store/slices/player";
 
 interface VideoProps {
@@ -7,7 +7,7 @@ interface VideoProps {
 }
 
 export function VideoPlayer({ url }: VideoProps) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   function handleNext() {
     dispatch(next());

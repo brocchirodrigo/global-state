@@ -1,7 +1,6 @@
 import * as Collapsible from "@radix-ui/react-collapsible";
 import { ChevronDown } from "lucide-react";
-import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store";
 import { play } from "../../store/slices/player";
 import { Video } from "./Video";
 
@@ -12,14 +11,14 @@ interface ModuleProps {
 }
 
 export function Module({ amount, moduleIndex, title }: ModuleProps) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const { videos, currentModuleIndex, currentVideoIndex } = useAppSelector(
     (state) => {
       const { currentModuleIndex, currentVideoIndex } = state.player;
 
       return {
-        videos: state.player.playlist.modules[moduleIndex].videos,
+        videos: state.player.playlist?.modules[moduleIndex].videos,
         currentModuleIndex,
         currentVideoIndex,
       };
@@ -45,21 +44,22 @@ export function Module({ amount, moduleIndex, title }: ModuleProps) {
       </Collapsible.Trigger>
       <Collapsible.Content>
         <nav className="relative flex flex-col gap-4 p-6">
-          {videos.map((video, videoIndex) => {
-            const isCurrent =
-              currentModuleIndex === moduleIndex &&
-              currentVideoIndex === videoIndex;
+          {videos &&
+            videos.map((video, videoIndex) => {
+              const isCurrent =
+                currentModuleIndex === moduleIndex &&
+                currentVideoIndex === videoIndex;
 
-            return (
-              <Video
-                key={video.id}
-                title={video.title}
-                duration={video.duration}
-                onPlay={() => dispatch(play([moduleIndex, videoIndex]))}
-                isCurrent={isCurrent}
-              />
-            );
-          })}
+              return (
+                <Video
+                  key={video.id}
+                  title={video.title}
+                  duration={video.duration}
+                  onPlay={() => dispatch(play([moduleIndex, videoIndex]))}
+                  isCurrent={isCurrent}
+                />
+              );
+            })}
         </nav>
       </Collapsible.Content>
     </Collapsible.Root>

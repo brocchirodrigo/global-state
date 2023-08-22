@@ -4,9 +4,9 @@ export const useCurrentVideoSelector = () => {
   return useAppSelector((state) => {
     const { currentModuleIndex, currentVideoIndex } = state.player;
 
-    const currentModule = state.player.playlist.modules[currentModuleIndex];
+    const currentModule = state.player.playlist?.modules[currentModuleIndex];
     const currentVideo =
-      state.player.playlist.modules[currentModuleIndex].videos[
+      state.player.playlist?.modules[currentModuleIndex].videos[
         currentVideoIndex
       ];
 

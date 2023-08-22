@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { next, play, playerSlice, player as reducer } from "../slices/player";
+import { PlayerState, next, play, player as reducer } from "../slices/player";
 
-const initialState = {
+const initialState: PlayerState = {
   playlist: {
     modules: [
       {
-        id: "1",
+        id: 1,
         title: "Iniciando com Redux",
         videos: [
           {
@@ -23,7 +23,7 @@ const initialState = {
         ],
       },
       {
-        id: "2",
+        id: 2,
         title: "Iniciando com Redux part II",
         videos: [
           {
@@ -62,8 +62,6 @@ describe("player slice", () => {
   });
 
   it("should be able to play next module automatically", () => {
-    const initialState = playerSlice.getInitialState();
-
     const state = reducer(
       {
         ...initialState,

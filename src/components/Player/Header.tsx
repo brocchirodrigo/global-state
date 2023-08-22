@@ -7,9 +7,9 @@ export function Header() {
   return (
     <div className="flex items-center justify-between ">
       <div className="flex flex-col gap-1">
-        <h1 className="text-2xl font-bold">{currentModule.title}</h1>
+        <h1 className="text-2xl font-bold">{currentModule?.title}</h1>
         <span className="text-sm text-zinc-400">
-          Assistindo atualmente ao vídeo "{currentVideo.title}"
+          Assistindo atualmente ao vídeo "{currentVideo?.title}"
         </span>
       </div>
 
