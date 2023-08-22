@@ -1,7 +1,5 @@
 import Player from "react-player";
 import { useDispatch } from "react-redux";
-import "vidstack/styles/community-skin/video.css";
-import "vidstack/styles/defaults.css";
 import { next } from "../../store/slices/player";
 
 interface VideoProps {

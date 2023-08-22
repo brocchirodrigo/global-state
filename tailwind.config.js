@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{jsx,tsx}"],
@@ -7,8 +6,7 @@ export default {
   },
 
   plugins: [
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    // eslint-disable-next-line @typescript-eslint/no-var-requires, no-undef
     require("tailwind-scrollbar")({ nocompatible: true }),
-    require("vidstack/tailwind.cjs"),
   ],
 };
