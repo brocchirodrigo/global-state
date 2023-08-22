@@ -1,18 +1,8 @@
 import { MessageCircle } from "lucide-react";
-import { useAppSelector } from "../../store";
+import { useCurrentVideoSelector } from "../../store/hooks/useCurrentVideoSelector";
 
 export function Header() {
-  const { currentModule, currentVideo } = useAppSelector((state) => {
-    const { currentModuleIndex, currentVideoIndex } = state.player;
-
-    const currentModule = state.player.playlist.modules[currentModuleIndex];
-    const currentVideo =
-      state.player.playlist.modules[currentModuleIndex].videos[
-        currentVideoIndex
-      ];
-
-    return { currentModule, currentVideo };
-  });
+  const { currentModule, currentVideo } = useCurrentVideoSelector();
 
   return (
     <div className="flex items-center justify-between ">
