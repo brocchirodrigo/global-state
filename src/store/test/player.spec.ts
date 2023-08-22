@@ -42,6 +42,7 @@ const initialState: PlayerState = {
       },
     ],
   },
+  isLoading: false,
   currentModuleIndex: 0,
   currentVideoIndex: 0,
 };

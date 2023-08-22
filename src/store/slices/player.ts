@@ -20,12 +20,14 @@ export interface PlayerState {
   currentModuleIndex: number;
   currentVideoIndex: number;
   playlist: Modules | null;
+  isLoading: boolean;
 }
 
 const initialState: PlayerState = {
   playlist: null,
   currentModuleIndex: 0,
   currentVideoIndex: 0,
+  isLoading: true,
 };
 
 export const loadModules = createAsyncThunk("player/load", async () => {
@@ -70,8 +72,13 @@ export const playerSlice = createSlice({
     },
   },
   extraReducers(builder) {
+    builder.addCase(loadModules.pending, (state) => {
+      state.isLoading = true;
+    });
+
     builder.addCase(loadModules.fulfilled, (state, action) => {
       state.playlist = action.payload;
+      state.isLoading = false;
     });
   },
 });

@@ -30,7 +30,7 @@ export function Player() {
 
         <main className="relative flex overflow-hidden border rounded-lg shadow border-zinc-800 bg-zinc-900 pr-80">
           <div className="flex-1">
-            {currentVideo && <VideoPlayer url={currentVideo.url} />}
+            <VideoPlayer url={currentVideo?.url} />
           </div>
 
           <aside className="absolute top-0 bottom-0 right-0 overflow-y-auto border-l divide-y-2 w-80 border-zinc-800 bg-zinc-900 divide-zinc-900 scrollbar-thin scrollbar-thumb-zinc-400 scrollbar-track-zinc-700">
