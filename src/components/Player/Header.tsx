@@ -1,5 +1,5 @@
 import { MessageCircle } from "lucide-react";
-import { useCurrentVideoSelector, useStore } from "../../zustand-store";
+import { useCurrentVideoSelector, useStore } from "../../store";
 
 export function Header() {
   const { currentModule, currentVideo } = useCurrentVideoSelector();

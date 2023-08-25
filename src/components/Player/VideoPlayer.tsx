@@ -1,6 +1,6 @@
 import { Loader } from "lucide-react";
 import Player from "react-player";
-import { useStore } from "../../zustand-store";
+import { useStore } from "../../store";
 
 interface VideoProps {
   url?: string;

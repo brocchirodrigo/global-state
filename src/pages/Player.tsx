@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Header } from "../components/Player/Header";
 import { Module } from "../components/Player/Module";
 import { VideoPlayer } from "../components/Player/VideoPlayer";
-import { useCurrentVideoSelector, useStore } from "../zustand-store";
+import { useCurrentVideoSelector, useStore } from "../store";
 
 export function Player() {
   const { playlist, load } = useStore((store) => {
