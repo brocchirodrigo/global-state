@@ -1,23 +1,26 @@
 import { Loader } from "lucide-react";
 import Player from "react-player";
-import { useAppDispatch, useAppSelector } from "../../store";
-import { next } from "../../store/slices/player";
+import { useStore } from "../../zustand-store";
 
 interface VideoProps {
   url?: string;
 }
 
 export function VideoPlayer({ url }: VideoProps) {
-  const dispatch = useAppDispatch();
-  const isVideoLoading = useAppSelector((state) => state.player.isLoading);
+  const { isLoading, next } = useStore((store) => {
+    return {
+      isLoading: store.isLoading,
+      next: store.next,
+    };
+  });
 
   function handleNext() {
-    dispatch(next());
+    next();
   }
 
   return (
     <div className="flex items-center justify-center w-full h-full bg-zinc-950 aspect-video">
-      {isVideoLoading ? (
+      {isLoading ? (
         <div className="flex items-center justify-center h-full">
           <Loader className="w-6 h-6 text-zinc-400 animate-spin" />
         </div>

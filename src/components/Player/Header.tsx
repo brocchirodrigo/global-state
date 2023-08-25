@@ -1,12 +1,12 @@
 import { MessageCircle } from "lucide-react";
-import { useAppSelector } from "../../store";
-import { useCurrentVideoSelector } from "../../store/hooks/useCurrentVideoSelector";
+import { useCurrentVideoSelector, useStore } from "../../zustand-store";
 
 export function Header() {
   const { currentModule, currentVideo } = useCurrentVideoSelector();
-  const isVideoLoading = useAppSelector((state) => state.player.isLoading);
 
-  if (isVideoLoading) {
+  const isLoading = useStore((store) => store.isLoading);
+
+  if (isLoading) {
     return <h1 className="text-2xl font-bold animate-pulse">Carregando...</h1>;
   }
 
